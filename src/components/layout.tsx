@@ -5,8 +5,7 @@ import cookie from "cookie";
 
 const Layout = () => {
 	const cookies = cookie.parse(document.cookie);
-	if (!cookies.token && document.location.pathname !== "/auth")
-		return <Navigate to={"/auth"}></Navigate>;
+	if (!cookies.token) return <Navigate to={"/auth"}></Navigate>;
 	return (
 		<div>
 			<header>header</header>
