@@ -1,7 +1,9 @@
 /** @format */
 
 const Home = () => {
-	return <div>home</div>;
+	return <main>
+		
+	</main>;
 };
 
 export default Home;

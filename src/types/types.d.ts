@@ -9,6 +9,7 @@ import {
 	InputProps,
 	TypographyProps,
 	IconButtonProps,
+	DrawerProps,
 } from "@material-tailwind/react";
 
 declare module "@material-tailwind/react" {
@@ -67,6 +68,15 @@ declare module "@material-tailwind/react" {
 		) => void;
 	}
 	interface TypographyProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface DrawerProps {
 		placeholder?: string;
 		onPointerEnterCapture?: (
 			event: React.PointerEvent<HTMLButtonElement>
