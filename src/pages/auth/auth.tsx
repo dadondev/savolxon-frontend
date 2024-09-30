@@ -13,7 +13,7 @@ import Login from "./components/login";
 const Auth = () => {
 	return (
 		<div className='h-full grid place-items-center'>
-			<div className='max-w-[382px] w-full px-4 border shadow pt-5 rounded-xl'>
+			<div className='max-w-[382px] w-full px-4 border shadow pt-5 rounded-xl mx-4'>
 				<Tabs value='enterTest'>
 					<TabsHeader>
 						<Tab
