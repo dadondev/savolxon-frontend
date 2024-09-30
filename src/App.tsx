@@ -9,6 +9,11 @@ import { Toaster } from "react-hot-toast";
 const App = () => {
 	const router = createHashRouter([
 		{
+			path: "/auth",
+			element: <Auth />,
+		},
+		{
+			path: "*",
 			element: <Layout />,
 			children: [
 				{
@@ -16,10 +21,6 @@ const App = () => {
 					element: <Home />,
 				},
 			],
-		},
-		{
-			path: "/auth",
-			element: <Auth />,
 		},
 	]);
 	return (
