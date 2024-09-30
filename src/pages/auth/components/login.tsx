@@ -8,7 +8,6 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 import PhoneInput from "react-phone-number-input/input";
 import loginValidator from "../../../validators/login.validator";
 import { login, loginPayloadI } from "../../../actions";
-import cookie from "cookie";
 import { loginRespI } from "../../../types/types";
 import { useNavigate } from "react-router-dom";
 import jsCookie from "js-cookie";
