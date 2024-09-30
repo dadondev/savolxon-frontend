@@ -7,8 +7,7 @@ export interface loginPayloadI {
 	phoneNumber: string;
 	password: string;
 }
-export const baseUrl =
-	"https://savolxon-backend-production.up.railway.app/api/auth/teacher/login";
+export const baseUrl = "https://savolxon.up.railway.app/api/auth/teacher/login";
 
 export async function login(values: loginPayloadI) {
 	const resp = axios.post(baseUrl, values);
