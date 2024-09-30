@@ -1,15 +1,16 @@
 /** @format */
 
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import cookie from "cookie";
+import { ReactNode } from "react";
 
-const Layout = () => {
+const Layout = ({ children }: { children: ReactNode }) => {
 	const cookies = cookie.parse(document.cookie);
 	if (!cookies.token) return <Navigate to={"/auth"}></Navigate>;
 	return (
 		<div>
 			<header>header</header>
-			<Outlet />
+			{children}
 		</div>
 	);
 };
