@@ -13,7 +13,6 @@ const App = () => {
 			element: <Auth />,
 		},
 		{
-			path: "*",
 			element: <Layout />,
 			children: [
 				{
