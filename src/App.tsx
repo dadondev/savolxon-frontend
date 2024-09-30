@@ -11,7 +11,7 @@ const telegram: any = "Telegram" in window ? window.Telegram : "";
 
 const App = () => {
 	useEffect(() => {
-		telegram.Telegram.WebApp.expand();
+		if (telegram.Telegram.WebApp) telegram.Telegram.WebApp.expand();
 	}, []);
 
 	return (
