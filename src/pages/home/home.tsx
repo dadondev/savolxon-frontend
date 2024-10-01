@@ -17,7 +17,7 @@ const Home = () => {
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const payload: loginRespI = JSON.parse(localStorage.getItem("user") || "");
-		if (id.length === 0 && payload.id) giveUser(payload);
+		if (id.length !== 0 && payload.id) giveUser(payload);
 		getAllTests().then((e) => {
 			giveAll(e);
 			setLoading(false);
