@@ -11,6 +11,11 @@ import {
 	IconButtonProps,
 	DrawerProps,
 	SpeedDialProps,
+	DialogProps,
+	DialogBodyProps,
+	DialogHeaderProps,
+	DialogFooterProps,
+	SpinnerProps,
 } from "@material-tailwind/react";
 
 declare module "@material-tailwind/react" {
@@ -104,6 +109,51 @@ declare module "@material-tailwind/react" {
 			event: React.PointerEvent<HTMLButtonElement>
 		) => void;
 	}
+	interface DialogProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface DialogBodyProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface DialogHeaderProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface DialogFooterProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface SpinnerProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
 }
 
 export interface loginRespI {
@@ -113,4 +163,20 @@ export interface loginRespI {
 	phoneNumber: string;
 	telegramId: null | string;
 	token: string;
+}
+
+export interface testI {
+	id: string;
+	name: string;
+	status: "willbe" | "active" | "finished";
+	start_date: null | Date;
+	finish_date: null | Date;
+	quizsCount: number;
+	enterCode: string;
+	teacher: {
+		id: string;
+		firstName: string;
+		lastName: string;
+		phoneNumber: string;
+	};
 }

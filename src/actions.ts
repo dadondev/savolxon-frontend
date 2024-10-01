@@ -8,6 +8,10 @@ export interface loginPayloadI {
 	phoneNumber: string;
 	password: string;
 }
+export interface createTestI {
+	name: string;
+	teacher_id: string;
+}
 export const baseUrl = "https://savolxon.up.railway.app/api";
 
 export async function login(values: loginPayloadI) {
@@ -29,5 +33,26 @@ export async function getAllTests() {
 		},
 	});
 	if (resp.status !== 200) throw new Error("Malumotlarni olishda xatolik!");
+	return resp.data;
+}
+
+export async function createTest(payload: createTestI) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.post(baseUrl + "/teacher/tests/create", payload, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 201) throw new Error("Malumotlarni yaratishda xatolik!");
+	return resp.data;
+}
+export async function update(id: string, payload: any) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.put(baseUrl + "/teacher/tests/edit/" + id, payload, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200) throw new Error("Malumotlarni yaratishda xatolik!");
 	return resp.data;
 }

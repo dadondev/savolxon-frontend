@@ -11,12 +11,14 @@ import { login, loginPayloadI } from "../../../actions";
 import { loginRespI } from "../../../types/types";
 import { useNavigate } from "react-router-dom";
 import jsCookie from "js-cookie";
+import useUserData from "../../../zustand/user";
 
 const initialValues = {
 	phoneNumber: "",
 	password: "",
 };
 const Login = () => {
+	const { giveUser } = useUserData();
 	const navigate = useNavigate();
 	const { handleSubmit, handleBlur, handleChange, errors, isSubmitting } =
 		useFormik({
@@ -30,11 +32,12 @@ const Login = () => {
 		try {
 			const data: loginRespI = await login(values);
 
-			const resp = jsCookie.set("token", data.token, {
+			jsCookie.set("token", data.token, {
 				expires: 60 * 60 * 10,
 			});
 			navigate("/");
-			console.log(resp);
+			giveUser(data);
+			localStorage.setItem("user", JSON.stringify(data));
 		} catch (error) {
 			console.log(error);
 		}
