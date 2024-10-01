@@ -12,7 +12,7 @@ export interface createTestI {
 	name: string;
 	teacher_id: string;
 }
-export const baseUrl = "http://localhost:3000/api";
+export const baseUrl = "https://savolxon.railway.up/api";
 
 export async function login(values: loginPayloadI) {
 	const resp = axios.post(baseUrl + "/auth/teacher/login", values);
