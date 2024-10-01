@@ -10,6 +10,7 @@ import {
 	TypographyProps,
 	IconButtonProps,
 	DrawerProps,
+	SpeedDialProps,
 } from "@material-tailwind/react";
 
 declare module "@material-tailwind/react" {
@@ -77,6 +78,24 @@ declare module "@material-tailwind/react" {
 		) => void;
 	}
 	interface DrawerProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface DrawerProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface SpeedDialProps {
 		placeholder?: string;
 		onPointerEnterCapture?: (
 			event: React.PointerEvent<HTMLButtonElement>
