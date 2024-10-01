@@ -76,7 +76,12 @@ const TestCard = ({ name, quizsCount, status, id, enterCode }: testI) => {
 					</Button>
 					<div className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex gap-3 flex-wrap'>
 						{status !== "active" && (
-							<Button className='p-2 bg-red-500'>
+							<Button
+								className='p-2 bg-red-500'
+								onClick={() => {
+									catchOne(id);
+									preferModal("deleteTest");
+								}}>
 								<TrashIcon className='h-5 w-5' />
 							</Button>
 						)}
@@ -90,7 +95,10 @@ const TestCard = ({ name, quizsCount, status, id, enterCode }: testI) => {
 							<PencilIcon className='h-5 w-5' />
 						</Button>
 						<Button
-							onClick={() => navigate("/tests/" + id)}
+							onClick={() => {
+								catchOne(id);
+								navigate("/tests/" + id);
+							}}
 							className='p-2 bg-blue-500'>
 							<InformationCircleIcon className='h-5 w-5' />
 						</Button>

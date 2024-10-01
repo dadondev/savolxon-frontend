@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { getAllTests } from "../../actions";
 import { SpeedDialWithTextOutside } from "../../components/menu";
-import Modal from "../../components/modal";
 import useUserData from "../../zustand/user";
 import useTestsStore from "../../zustand/tests";
 import TestCard from "./components/test.card";
@@ -49,7 +48,6 @@ const Home = () => {
 					</div>
 				)}
 			</main>
-			<Modal />
 		</>
 	);
 };

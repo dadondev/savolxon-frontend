@@ -16,6 +16,7 @@ import {
 	DialogHeaderProps,
 	DialogFooterProps,
 	SpinnerProps,
+	TextareaProps,
 } from "@material-tailwind/react";
 
 declare module "@material-tailwind/react" {
@@ -154,6 +155,24 @@ declare module "@material-tailwind/react" {
 			event: React.PointerEvent<HTMLButtonElement>
 		) => void;
 	}
+	interface TextareaProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
+	interface CheckboxProps {
+		placeholder?: string;
+		onPointerEnterCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+		onPointerLeaveCapture?: (
+			event: React.PointerEvent<HTMLButtonElement>
+		) => void;
+	}
 }
 
 export interface loginRespI {
@@ -179,4 +198,41 @@ export interface testI {
 		lastName: string;
 		phoneNumber: string;
 	};
+}
+
+export interface SingleVariant {
+	id: string;
+	text: string;
+	name: string;
+}
+
+export interface SingleQuiz {
+	id: string;
+	text: string;
+	variants: SingleVariant[];
+	true_variant: string;
+}
+
+export interface SingleTestI {
+	id: string;
+	name: string;
+	quizs: [] | SingleQuiz[];
+}
+
+export interface variantSingleColI {
+	text: string;
+	index: number;
+}
+
+export interface variantsColsI {
+	active: number;
+	text: string;
+	variants: variantSingleColI[];
+}
+
+export interface studentI {
+	id: string;
+	firstName: string;
+	lastName: string;
+	phoneNumber: string;
 }

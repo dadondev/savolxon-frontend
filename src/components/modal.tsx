@@ -5,11 +5,18 @@ import useModalStore from "../zustand/modal";
 import CreateTestModal from "./createTest.modal";
 import UpdateTest from "./updateTest";
 import { XCircleIcon } from "@heroicons/react/24/outline";
+import DeleteTest from "./deleteTest";
+import AddQuiz from "./addQuiz";
+import UpdateQuiz from "./updateQuiz";
+import DeleteQuiz from "./deleteQuiz";
 
 const modals = {
 	createTest: <CreateTestModal />,
-	deleteTest: <></>,
+	deleteTest: <DeleteTest></DeleteTest>,
 	updateTest: <UpdateTest></UpdateTest>,
+	addQuiz: <AddQuiz />,
+	updateQuiz: <UpdateQuiz></UpdateQuiz>,
+	deleteQuiz: <DeleteQuiz></DeleteQuiz>,
 };
 
 const Modal = () => {
@@ -19,7 +26,8 @@ const Modal = () => {
 		<Dialog
 			handler={close}
 			open={open}
-			size='xs'>
+			size='xs'
+			className='max-w-[90dvw] sm:max-w-full overflow-auto max-h-full'>
 			<div className='flex items-center justify-between'>
 				<DialogHeader className='flex flex-col items-start'>
 					<Typography
@@ -29,7 +37,13 @@ const Modal = () => {
 							? "Test qo'shish"
 							: modal === "deleteTest"
 							? "Testni o'chirish"
-							: "Testni tahrirlash"}
+							: modal === "updateTest"
+							? "Testni tahrirlash"
+							: modal === "addQuiz"
+							? "Savol qo'shish"
+							: modal === "updateQuiz"
+							? "Savolni tahrirlash"
+							: "Savolni o'chirish"}
 					</Typography>
 				</DialogHeader>
 				<XCircleIcon

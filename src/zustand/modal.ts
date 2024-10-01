@@ -2,7 +2,13 @@
 
 import { create } from "zustand";
 
-type modalT = "createTest" | "deleteTest" | "updateTest";
+type modalT =
+	| "createTest"
+	| "deleteTest"
+	| "updateTest"
+	| "addQuiz"
+	| "updateQuiz"
+	| "deleteQuiz";
 interface State {
 	modal: modalT;
 	open: boolean;

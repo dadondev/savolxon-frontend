@@ -21,8 +21,8 @@ export function SpeedDialWithTextOutside() {
 
 	return (
 		<div className='fixed bottom-24 right-4'>
-			<SpeedDial className='bg-blue-gray-50'>
-				<SpeedDialHandler>
+			<SpeedDial>
+				<SpeedDialHandler className='bg-blue-500 text-white'>
 					<IconButton
 						color='white'
 						size='lg'

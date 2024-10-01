@@ -22,12 +22,12 @@ const FooterLink = ({
 
 	return (
 		<Button
-			className='flex flex-col justify-center items-center gap-2 data-[active=true]:text-black/50 !max-w-[100px] w-full'
+			className='flex flex-col justify-center items-center gap-2 data-[active=true]:text-black/50 !max-w-[80px] w-full'
 			onClick={handleNavigate}
 			variant='text'
 			data-active={pathname === url}>
 			{icon}
-			<span>{text}</span>
+			<span className='text-xs'>{text}</span>
 		</Button>
 	);
 };
