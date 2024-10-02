@@ -2,15 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { getAllTests } from "../../actions";
-import { SpeedDialWithTextOutside } from "../../components/menu";
 import useUserData from "../../zustand/user";
 import useTestsStore from "../../zustand/tests";
 import TestCard from "./components/test.card";
 import { Spinner } from "@material-tailwind/react";
+import NotFound from "../../components/notFound";
 
 const Home = () => {
 	const { tests, giveAll } = useTestsStore();
-	const [data, setData] = useState(tests);
 	const { giveUser } = useUserData();
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -24,22 +23,19 @@ const Home = () => {
 			setLoading(false);
 		});
 	}, []);
-	useEffect(() => {
-		setData(tests);
-	}, [tests]);
 	return (
 		<>
 			<main className='relative h-full'>
-				<SpeedDialWithTextOutside />
-
 				{loading ? (
 					<div className='h-full flex flex-col items-center justify-center'>
 						<Spinner className='w-10 h-10' />
 						<span className='text-xl'>Malumotlar yuklanmoqda...</span>
 					</div>
+				) : tests.length === 0 ? (
+					<NotFound />
 				) : (
 					<div className='flex justify-center gap-5 flex-wrap pt-4'>
-						{data.map((e) => (
+						{tests.map((e) => (
 							<TestCard
 								{...e}
 								key={e.id}

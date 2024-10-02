@@ -8,7 +8,11 @@ type modalT =
 	| "updateTest"
 	| "addQuiz"
 	| "updateQuiz"
-	| "deleteQuiz";
+	| "deleteQuiz"
+	| "uploadFile"
+	| "addStudent"
+	| "updateStudent"
+	| "deleteStudent";
 interface State {
 	modal: modalT;
 	open: boolean;

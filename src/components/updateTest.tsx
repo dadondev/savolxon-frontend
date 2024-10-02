@@ -31,6 +31,7 @@ function UpdateTest() {
 	const formik = useFormik({
 		initialValues,
 		onSubmit: async (values) => {
+			const isWillBe = moment(values.finish_date).isAfter(new Date());
 			const datas = {
 				start_date:
 					currentTest.quizsCount > 4
@@ -41,7 +42,11 @@ function UpdateTest() {
 						? new Date(moment(values.finish_date).format("YYYY-MM-DDTHH:mm"))
 						: null,
 				name: values.name,
-				status: currentTest.quizsCount > 4 ? currentTest.status : "willbe",
+				status: isWillBe
+					? "willbe"
+					: currentTest.quizsCount > 4
+					? currentTest.status
+					: "willbe",
 			};
 			close();
 			const fetchedData = update(currentTest.id, datas);

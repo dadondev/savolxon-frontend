@@ -3,6 +3,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import cookie from "cookie";
+import { addStudentI } from "./types/types";
 
 export interface loginPayloadI {
 	phoneNumber: string;
@@ -133,4 +134,92 @@ export async function getAllStudents() {
 	if (resp.status !== 200)
 		throw new Error("Malumotlarni o'chirishdada xatolik!");
 	return resp.data;
+}
+
+export async function uploadFile(id: string, file: File) {
+	const cookies = cookie.parse(document.cookie);
+	const form = new FormData();
+	form.append("file", file);
+	const resp = await axios.post(
+		baseUrl + "/teacher/tests/file/upload/" + id,
+		form,
+		{
+			headers: {
+				Authorization: cookies.token,
+			},
+		}
+	);
+	if (resp.status !== 200) throw new Error("Faylni yuklashda xatolik!");
+	return resp.data;
+}
+
+export async function createStudent(payload: addStudentI) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.post(baseUrl + "/auth/student/create", payload, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 201) throw new Error("Malumotlarni yaratishda xatolik!");
+	return resp.data;
+}
+
+export async function updateStudent(id: string, payload: addStudentI) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.put(baseUrl + "/auth/student/edit/" + id, payload, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200) throw new Error("Malumotlarni yaratishda xatolik!");
+	return resp.data;
+}
+
+export async function deleteStudent(id: string) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.delete(baseUrl + "/auth/student/delete/" + id, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200)
+		throw new Error("Malumotlarni o'chirishdada xatolik!");
+	return resp.data;
+}
+
+export async function enterTest(payload: any) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.post(baseUrl + "/student/test/enter", payload, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200) throw new Error("Testga kirishda xatolik!");
+	return resp.data;
+}
+
+export async function finishTest(payload: any) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.post(baseUrl + "/student/test/enter", payload, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200) throw new Error("Testga kirishda xatolik!");
+	return resp.data;
+}
+
+export async function finishedTest(payload: any, navigate: () => void) {
+	try {
+		navigate();
+		const fetchedData = finishTest(payload);
+		await toast.promise(fetchedData, {
+			error: "Xatolik yuz berdi! Qayta kirishingizni so'raymiz!",
+			loading: "Tekshirilmoqda...",
+			success:
+				"Tekshirildi! Natijangiz sizga telegram va sms orqali yuboriladi!",
+		});
+	} catch (error) {
+		throw error;
+	}
 }

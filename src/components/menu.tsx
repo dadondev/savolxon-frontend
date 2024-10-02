@@ -14,6 +14,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import useModalStore from "../zustand/modal";
+import { TiUserAddOutline } from "react-icons/ti";
 
 export function SpeedDialWithTextOutside() {
 	const { preferModal } = useModalStore();
@@ -42,6 +43,14 @@ export function SpeedDialWithTextOutside() {
 						onPointerLeaveCapture={undefined}
 						className='bg-blue-gray-50'>
 						<FolderPlusIcon className='w-5 h-5' />
+					</SpeedDialAction>
+					<SpeedDialAction
+						onClick={() => preferModal("addStudent")}
+						placeholder={"menu"}
+						onPointerEnterCapture={undefined}
+						onPointerLeaveCapture={undefined}
+						className='bg-blue-gray-50'>
+						<TiUserAddOutline size={20} />
 					</SpeedDialAction>
 					<SpeedDialAction
 						onClick={() => navigate(-1)}

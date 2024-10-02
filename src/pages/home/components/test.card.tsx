@@ -12,6 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import useModalStore from "../../../zustand/modal";
 import useTestsStore from "../../../zustand/tests";
+import { FiUploadCloud } from "react-icons/fi";
 
 const TestCard = ({ name, quizsCount, status, id, enterCode }: testI) => {
 	const navigate = useNavigate();
@@ -76,15 +77,26 @@ const TestCard = ({ name, quizsCount, status, id, enterCode }: testI) => {
 					</Button>
 					<div className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 flex gap-3 flex-wrap'>
 						{status !== "active" && (
-							<Button
-								className='p-2 bg-red-500'
-								onClick={() => {
-									catchOne(id);
-									preferModal("deleteTest");
-								}}>
-								<TrashIcon className='h-5 w-5' />
-							</Button>
+							<>
+								<Button
+									className='p-2 bg-red-500'
+									onClick={() => {
+										catchOne(id);
+										preferModal("deleteTest");
+									}}>
+									<TrashIcon className='h-5 w-5' />
+								</Button>
+								<Button
+									className='p-2 bg-orange-500'
+									onClick={() => {
+										catchOne(id);
+										preferModal("uploadFile");
+									}}>
+									<FiUploadCloud className='h-5 w-5' />
+								</Button>
+							</>
 						)}
+
 						<Button
 							onClick={() => {
 								catchOne(id);

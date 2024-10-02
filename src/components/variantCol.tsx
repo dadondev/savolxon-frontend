@@ -24,7 +24,7 @@ const VariantCol = ({
 				onClick={() =>
 					setVariants((prev) => ({ ...prev, active: index }))
 				}></div>
-			<Input
+			<Input		
 				className='!pt-0 !pb-0 font-medium'
 				style={{ color: "black" }}
 				name='variant'

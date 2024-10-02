@@ -9,6 +9,10 @@ import DeleteTest from "./deleteTest";
 import AddQuiz from "./addQuiz";
 import UpdateQuiz from "./updateQuiz";
 import DeleteQuiz from "./deleteQuiz";
+import FileUpload from "./fileUpload";
+import AddStudent from "./addStudent";
+import UpdateStudent from "./updateStudent";
+import DeleteStudent from "./deleteStudent";
 
 const modals = {
 	createTest: <CreateTestModal />,
@@ -17,6 +21,10 @@ const modals = {
 	addQuiz: <AddQuiz />,
 	updateQuiz: <UpdateQuiz></UpdateQuiz>,
 	deleteQuiz: <DeleteQuiz></DeleteQuiz>,
+	uploadFile: <FileUpload></FileUpload>,
+	addStudent: <AddStudent></AddStudent>,
+	deleteStudent: <DeleteStudent></DeleteStudent>,
+	updateStudent: <UpdateStudent></UpdateStudent>,
 };
 
 const Modal = () => {
@@ -43,7 +51,15 @@ const Modal = () => {
 							? "Savol qo'shish"
 							: modal === "updateQuiz"
 							? "Savolni tahrirlash"
-							: "Savolni o'chirish"}
+							: modal === "deleteQuiz"
+							? "Savolni o'chirish"
+							: modal === "addStudent"
+							? "O'quvchi qo'shish"
+							: modal === "deleteStudent"
+							? "O'quvchi o'chirish"
+							: modal === "updateStudent"
+							? "O'quvchini tahrirlash"
+							: "Faylni yuklash"}
 					</Typography>
 				</DialogHeader>
 				<XCircleIcon
