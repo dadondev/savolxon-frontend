@@ -87,6 +87,7 @@ const QuizSlider = () => {
 						variant='gradient'
 						disabled={typeof selected === "undefined"}
 						onClick={async () => {
+							SyncResult();
 							finishedTest(
 								{
 									results,
