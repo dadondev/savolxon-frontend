@@ -200,7 +200,7 @@ export async function enterTest(payload: any) {
 
 export async function finishTest(payload: any) {
 	const cookies = cookie.parse(document.cookie);
-	const resp = await axios.post(baseUrl + "/student/test/enter", payload, {
+	const resp = await axios.post(baseUrl + "/student/test/finish", payload, {
 		headers: {
 			Authorization: cookies.token,
 		},
