@@ -6,7 +6,7 @@ import useModalStore from "../zustand/modal";
 import { useFormik } from "formik";
 import addStudentValidator from "../validators/addstudent.validator";
 import PhoneInput from "react-phone-number-input/input";
-import { createStudent, updateStudent } from "../actions";
+import { updateStudent } from "../actions";
 import toast from "react-hot-toast";
 import useStudentStore from "../zustand/student";
 import { addStudentI } from "../types/types";
