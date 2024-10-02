@@ -33,7 +33,9 @@ const Login = () => {
 			const data: loginRespI = await login(values);
 
 			jsCookie.set("token", data.token, {
+				httpOnly: true,
 				expires: 60 * 60 * 10,
+				secure: true,
 			});
 			navigate("/");
 			giveUser(data);
