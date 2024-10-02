@@ -211,8 +211,9 @@ export async function finishTest(payload: any) {
 
 export async function finishedTest(payload: any, navigate: () => void) {
 	try {
+		const phoneNumber = localStorage.getItem("phone");
 		navigate();
-		const fetchedData = finishTest(payload);
+		const fetchedData = finishTest({ ...payload, phoneNumber });
 		await toast.promise(fetchedData, {
 			error: "Xatolik yuz berdi! Qayta kirishingizni so'raymiz!",
 			loading: "Tekshirilmoqda...",

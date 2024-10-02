@@ -23,6 +23,7 @@ const EnterTest = () => {
 		});
 	async function onSubmit(values = initialValues) {
 		try {
+			localStorage.setItem("phone", values.phoneNumber);
 			const fetchedData = enterTest(values);
 			const resp = await toast.promise(fetchedData, {
 				loading: "Malumotlar tekshirilmoqda...",
