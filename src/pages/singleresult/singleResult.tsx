@@ -5,16 +5,18 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getSingleResult } from "../../actions";
 import useResultsStore from "../../zustand/result";
+import useUserData from "../../zustand/user";
 
 const SingleResult = () => {
 	const { id } = useParams();
+	const { phoneNumber } = useUserData();
 	const [loading, setLoading] = useState(true);
 	const { results, catchOne, giveOne, currentResult } = useResultsStore();
 
 	useEffect(() => {
 		const existResult = results.find((e) => e.id === id);
 		if (!existResult) {
-			getSingleResult(id as string).then((e) => {
+			getSingleResult(id as string, phoneNumber).then((e) => {
 				giveOne(e);
 				catchOne(id as string);
 			});
