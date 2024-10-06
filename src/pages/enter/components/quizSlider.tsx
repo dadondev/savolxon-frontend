@@ -48,6 +48,11 @@ const QuizSlider = () => {
 	}
 	return (
 		<div className='max-w-[400px] sm:max-w-[500px] mx-auto border shadow-sm rounded-md p-4 bg-gray-50'>
+			<div className=''>
+				<Typography>
+					{current + 1} of {quizs.length}
+				</Typography>
+			</div>
 			<div className='border-b pb-4'>
 				<Typography className='text-xl text-black font-medium'>
 					{quizs[current].text}
@@ -88,9 +93,15 @@ const QuizSlider = () => {
 						disabled={typeof selected === "undefined"}
 						onClick={async () => {
 							SyncResult();
-							finishedTest(
+							await finishedTest(
 								{
-									results,
+									results: [
+										...results,
+										{
+											id: quizs[current].id,
+											answer: quizs[current].variants[selected!].name,
+										},
+									],
 									telegramId: user?.id,
 									testId: id,
 									phoneNumber: "",
