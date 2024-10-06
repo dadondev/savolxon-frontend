@@ -307,3 +307,25 @@ export interface IWebApp {
 	};
 	HapticFeedback: any;
 }
+
+export interface SingleResults {
+	allQuizsCount: number;
+	corrects: number;
+	wrongs: string;
+	solved: SingleSolved[];
+	id: string;
+	userId: string;
+	testId: string;
+}
+export interface SingleSolved {
+	id: string;
+	quizText: string;
+	selectedVariant: string;
+	trueVariant: string;
+}
+
+export interface SingleResult {
+	test: SingleTestI;
+	user: studentI;
+	result: SingleResults;
+}

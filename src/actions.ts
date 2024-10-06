@@ -220,7 +220,83 @@ export async function finishedTest(payload: any, navigate: () => void) {
 			success:
 				"Tekshirildi! Natijangiz sizga telegram va sms orqali yuboriladi!",
 		});
+		return "ok";
 	} catch (error) {
 		throw error;
 	}
+}
+
+export async function getAllResults(phone: string) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.get(baseUrl + "/results/getAll?teacher=" + phone, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200) throw new Error("Natijalarni olishshda xatolik!");
+	return resp.data;
+}
+
+export async function getSingleResult(id: string, phone: string) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.get(
+		baseUrl + "/results/getone/" + id + "?teacher=" + phone,
+		{
+			headers: {
+				Authorization: cookies.token,
+			},
+		}
+	);
+	if (resp.status !== 200) throw new Error("Natijalarni olishshda xatolik!");
+	return resp.data;
+}
+
+export async function deleteSingleResult(id: string, phone: string) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.delete(
+		baseUrl + "/results/delete/" + id + "?teacher=" + phone,
+		{
+			headers: {
+				Authorization: cookies.token,
+			},
+		}
+	);
+	if (resp.status !== 200) throw new Error("Natijalarni olishshda xatolik!");
+	return resp.data;
+}
+
+export async function getOneUser(id: string) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.get(baseUrl + "/auth/student/getone/" + id, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200) throw new Error("Natijalarni olishshda xatolik!");
+	return resp.data;
+}
+
+export async function getOneTest(id: string) {
+	const cookies = cookie.parse(document.cookie);
+	const resp = await axios.get(baseUrl + "/teacher/tests/getone/" + id, {
+		headers: {
+			Authorization: cookies.token,
+		},
+	});
+	if (resp.status !== 200) throw new Error("Natijalarni olishshda xatolik!");
+	return resp.data;
+}
+
+export async function forgotPassword(values: {
+	phoneNumber: string;
+	telegramId?: string;
+}) {
+	const resp = axios.patch(baseUrl + "/auth/teacher/forget", values);
+	const data = await toast.promise(resp, {
+		loading: "Malumotlar tekshirilmoqda...",
+		error: "Iltimos qayta urinib ko'ring!",
+		success: "Jarayon yakunlandi! Iltimos kutib turing...",
+	});
+	if (data.status !== 200) throw new Error("Xatolik");
+	return data.data;
 }

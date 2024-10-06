@@ -2,18 +2,26 @@
 
 import { Link, Navigate } from "react-router-dom";
 import cookie from "cookie";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import Navbar from "./navbar";
 import { FaFolder } from "react-icons/fa";
 import FooterLink from "./navlink";
 import { GrScorecard } from "react-icons/gr";
 import { RiSettings4Fill } from "react-icons/ri";
-import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { SpeedDialWithTextOutside } from "./menu";
+import useUserData from "../zustand/user";
 
 const Layout = ({ children }: { children: ReactNode }) => {
+	const { giveUser } = useUserData();
 	const cookies = cookie.parse(document.cookie);
 	if (!cookies.token) return <Navigate to={"/auth"}></Navigate>;
+	useEffect(() => {
+		const datas = localStorage.getItem("user");
+		if (datas) {
+			const jsonData = JSON.parse(datas);
+			giveUser(jsonData);
+		}
+	}, []);
 	return (
 		<>
 			<div className='h-full grid grid-rows-[auto_1fr_auto]'>
@@ -35,7 +43,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 				</header>
 				<div className='h-full'>{children}</div>
 				<footer className='sm:hidden bg-blue-gray-50 sticky bottom-0'>
-					<div className='container mx-auto border-t flex justify-between'>
+					<div className='container mx-auto border-t flex justify-evenly gap-3'>
 						<FooterLink
 							url='/'
 							icon={<FaFolder size={20} />}
@@ -45,11 +53,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
 							url='/results'
 							icon={<GrScorecard size={20} />}
 							text='Natijalar'
-						/>
-						<FooterLink
-							url='/students'
-							icon={<UserGroupIcon className='w-5 h-5' />}
-							text="O'quvchilar"
 						/>
 						<FooterLink
 							url='/settings'

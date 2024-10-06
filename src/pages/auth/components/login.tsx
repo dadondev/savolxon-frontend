@@ -9,7 +9,7 @@ import PhoneInput from "react-phone-number-input/input";
 import loginValidator from "../../../validators/login.validator";
 import { login, loginPayloadI } from "../../../actions";
 import { loginRespI } from "../../../types/types";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import jsCookie from "js-cookie";
 import useUserData from "../../../zustand/user";
 
@@ -129,6 +129,13 @@ const Login = () => {
 						{errors.password}
 					</Typography>
 				)}
+			</div>
+			<div>
+				<Link
+					to={"/forgot"}
+					className='underline'>
+					Parolni unutdingizmi?
+				</Link>
 			</div>
 			<Button
 				type='submit'

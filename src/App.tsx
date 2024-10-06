@@ -7,10 +7,13 @@ import Auth from "./pages/auth/auth";
 import { Toaster } from "react-hot-toast";
 import Test from "./pages/test/test";
 import Modal from "./components/modal";
-import Students from "./pages/students/students";
 import EnterTestPage from "./pages/enter/enterTest";
 import { ITelegramUser, IWebApp } from "./types/types";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import Results from "./pages/results/results";
+import SingleResult from "./pages/singleresult/singleResult";
+import Settings from "./pages/settings/settings";
+import Forgot from "./pages/forgot/forgot";
 
 export interface ITelegramContext {
 	webApp?: IWebApp;
@@ -51,16 +54,28 @@ const App = () => {
 						element={<Layout children={<Home />} />}
 					/>
 					<Route
-						path='/students'
-						element={<Layout children={<Students />} />}
-					/>
-					<Route
 						path='/tests/:id'
 						element={<Layout children={<Test />} />}
 					/>
 					<Route
 						path='/entertest/:id'
 						element={<EnterTestPage />}
+					/>
+					<Route
+						path='/results'
+						element={<Layout children={<Results />} />}
+					/>
+					<Route
+						path='/results/:id'
+						element={<Layout children={<SingleResult />} />}
+					/>
+					<Route
+						path='/settings'
+						element={<Layout children={<Settings />} />}
+					/>
+					<Route
+						path='/forgot'
+						element={<Forgot />}
 					/>
 				</Routes>
 			</BrowserRouter>
