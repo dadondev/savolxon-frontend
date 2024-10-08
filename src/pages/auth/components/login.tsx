@@ -10,8 +10,8 @@ import loginValidator from "../../../validators/login.validator";
 import { login, loginPayloadI } from "../../../actions";
 import { loginRespI } from "../../../types/types";
 import { Link, useNavigate } from "react-router-dom";
-import jsCookie from "js-cookie";
 import useUserData from "../../../zustand/user";
+import { useCookies } from "react-cookie";
 
 const initialValues = {
 	phoneNumber: "",
@@ -20,6 +20,7 @@ const initialValues = {
 const Login = () => {
 	const { giveUser } = useUserData();
 	const navigate = useNavigate();
+	const [_, setCookie] = useCookies();
 	const { handleSubmit, handleBlur, handleChange, errors, isSubmitting } =
 		useFormik({
 			initialValues,
@@ -31,11 +32,12 @@ const Login = () => {
 	async function handleLogin(values: loginPayloadI) {
 		try {
 			const data: loginRespI = await login(values);
-
-			jsCookie.set("token", data.token, {
-				expires: 60 * 60 * 10,
+			const now = new Date();
+			setCookie("token", data.token, {
+				expires: new Date(now.getTime() + 10 * 60 * 60 * 1000),
 				secure: true,
 			});
+
 			navigate("/");
 			giveUser(data);
 			localStorage.setItem("user", JSON.stringify(data));

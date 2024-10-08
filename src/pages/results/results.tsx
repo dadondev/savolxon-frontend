@@ -8,6 +8,7 @@ import Result from "../../components/result";
 import useTestsStore from "../../zustand/tests";
 import useStudentStore from "../../zustand/student";
 import useUserData from "../../zustand/user";
+import NotFound from "../../components/notFound";
 
 const Results = () => {
 	const { giveAll, results } = useResultsStore();
@@ -37,31 +38,32 @@ const Results = () => {
 			</div>
 		);
 
+	const filteredDatas = results
+		.filter((e) => {
+			const existUser = students.students.find(
+				(student) => student.id === e.userId
+			);
+			const existTest = tests.tests.find((test) => test.id === e.testId);
+
+			return existTest && existUser;
+		})
+		.map((e, i) => {
+			const existUser = students.students.find(
+				(student) => student.id === e.userId
+			);
+			const existTest = tests.tests.find((test) => test.id === e.testId);
+			return (
+				<Result
+					result={e}
+					test={existTest as any}
+					user={existUser as any}
+					key={i}
+				/>
+			);
+		});
 	return (
 		<div className='container mx-auto flex justify-center flex-wrap gap-3 pt-5'>
-			{results
-				.filter((e) => {
-					const existUser = students.students.find(
-						(student) => student.id === e.userId
-					);
-					const existTest = tests.tests.find((test) => test.id === e.testId);
-
-					return existTest && existUser;
-				})
-				.map((e, i) => {
-					const existUser = students.students.find(
-						(student) => student.id === e.userId
-					);
-					const existTest = tests.tests.find((test) => test.id === e.testId);
-					return (
-						<Result
-							result={e}
-							test={existTest as any}
-							user={existUser as any}
-							key={i}
-						/>
-					);
-				})}
+			{filteredDatas.length === 0 ? <NotFound /> : filteredDatas}
 		</div>
 	);
 };
